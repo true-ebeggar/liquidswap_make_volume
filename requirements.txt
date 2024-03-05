@@ -1,0 +1,6 @@
+requests
+aptos-sdk==0.6.3
+pyuseragents
+loguru
+sqlalchemy
+ccxt
