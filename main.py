@@ -100,7 +100,7 @@ def process_account(account_number, logger):
                             token_info = TOKEN_MAP[token_key]
                             resource = token_info['resource']
                             token_balance = txn_manager._get_coin_value(resource)
-                            if int(token_balance) > 0:
+                            if token_balance and int(token_balance) > 0:
                                 txn_manager.swap_back(token_key)
                                 logger.info(
                                     f"Account {account_number} swapped back {token_key} to apt")
