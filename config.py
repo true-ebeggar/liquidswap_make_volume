@@ -11,7 +11,7 @@ MAX_AMOUNT_WITHDRAW = 4  # The maximum amount to withdraw in a single transactio
 REFUEL_THRESHOLD = 1  # The account balance threshold at which an account is considered ready for refueling.
 
 # Operational Behavior
-SHUFFLE_ACCOUNTS = True  # Whether to randomize the order of accounts before processing (True/False).
+SHUFFLE_ACCOUNTS = False  # By default, the list of accounts will be sorted from largest balance to smallest. If you need random order, switch this to True.
 MAX_THREAD = 1  # The maximum number of concurrent threads for processing.
 
 # Thread Timing
@@ -36,10 +36,43 @@ SLEEP_MAX = 180  # Maximum sleep duration (in seconds) before moving on to the n
 
 # Token Mapping
 TOKEN_MAP = {
-    'usdc': '0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa::asset::USDC',
-    'usdt': '0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa::asset::USDT',
-    'doodoo': '0x73eb84966be67e4697fc5ae75173ca6c35089e802650f75422ab49a8729704ec::coin::DooDoo'
-}  # A dictionary mapping token symbols to their respective blockchain addresses.
+    'usdc': {
+        'resource': '0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa::asset::USDC',
+        'decimals': 6,
+        'router': '0x190d44266241744264b964a37b8f09863167a12d3e70cda39376cfb4e3561e12::curves::Uncorrelated',
+        'function': '0x190d44266241744264b964a37b8f09863167a12d3e70cda39376cfb4e3561e12::scripts_v2::swap'
+    },
+    'usdt': {
+        'resource': '0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa::asset::USDT',
+        'decimals': 6,
+        'router': '0x190d44266241744264b964a37b8f09863167a12d3e70cda39376cfb4e3561e12::curves::Uncorrelated',
+        'function': '0x190d44266241744264b964a37b8f09863167a12d3e70cda39376cfb4e3561e12::scripts_v2::swap'
+    },
+    'doodoo': {
+        'resource': '0x73eb84966be67e4697fc5ae75173ca6c35089e802650f75422ab49a8729704ec::coin::DooDoo',
+        'decimals': 8,
+        'router': '0x163df34fccbf003ce219d3f1d9e70d140b60622cb9dd47599c25fb2f797ba6e::curves::Uncorrelated',
+        'function': '0x163df34fccbf003ce219d3f1d9e70d140b60622cb9dd47599c25fb2f797ba6e::scripts::swap'
+    },
+    # 'weth': {
+    #     'resource': '0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa::asset::WETH',
+    #     'decimals': 6,
+    #     'router': "0x190d44266241744264b964a37b8f09863167a12d3e70cda39376cfb4e3561e12::curves::Uncorrelated",
+    #     'function': "0x190d44266241744264b964a37b8f09863167a12d3e70cda39376cfb4e3561e12::scripts_v2::swap"
+    # },
+    'stapt': {
+        'resource': "0xd11107bdf0d6d7040c6c0bfbdecb6545191fdf13e8d8d259952f53e1713f61b5::staked_coin::StakedAptos",
+        'decimals': 8,
+        'router': "0x190d44266241744264b964a37b8f09863167a12d3e70cda39376cfb4e3561e12::curves::Stable",
+        'function': "0x190d44266241744264b964a37b8f09863167a12d3e70cda39376cfb4e3561e12::scripts_v2::swap"
+    },
+    'tapt': {
+        'resource': "0x84d7aeef42d38a5ffc3ccef853e1b82e4958659d16a7de736a29c55fbbeb0114::staked_aptos_coin::StakedAptosCoin",
+        'decimals': 8,
+        'router': "0x190d44266241744264b964a37b8f09863167a12d3e70cda39376cfb4e3561e12::curves::Stable",
+        'function': "0x190d44266241744264b964a37b8f09863167a12d3e70cda39376cfb4e3561e12::scripts_v2::swap"
+    }
+}  # A dictionary mapping token symbols to their respective blockchain data. Comment coin to exclude it from list
 
 # Network Node
 NODE = "https://fullnode.mainnet.aptoslabs.com/v1"  # The URL of the blockchain node to connect to for transactions.
