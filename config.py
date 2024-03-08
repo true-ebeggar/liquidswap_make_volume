@@ -26,6 +26,8 @@ AMOUNT_TO_LEFT_ON_ACC = 0.1  # The amount of tokens to be left in the account af
 MIN_VOLUME = 700  # The minimum target volume that will be assigned to account.
 MAX_VOLUME = 1200  # The maximum target volume that will be assigned to account.
 
+CHECK_TOKENS_BEFORE_WITHDRAW = True  # If True all map will be checked before withdraw
+
 # Token Management
 TOKEN_HOLD_TIME_MIN = 69  # Minimum time (in seconds) to hold a token before considering a swap back.
 TOKEN_HOLD_TIME_MAX = 100  # Maximum time (in seconds) to hold a token before considering a swap back.
